@@ -9,7 +9,7 @@ The goal of the lab is to demonstrate practical **Linux System Administration sk
 
 ## Architecture
 
-![Architecture Diagram](architecture-diagram.png)
+![Architecture Diagram](architecture/architecture-diagram.png)
 
 System flow:
 
