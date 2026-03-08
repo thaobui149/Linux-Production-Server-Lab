@@ -8,6 +8,7 @@ The goal of the lab is to demonstrate practical **Linux System Administration sk
 ---
 
 ## Architecture
+The following diagram shows the structure of the lab environment and how the components interact.
 
 ![Architecture Diagram](architecture/architecture-diagram.png)
 
@@ -49,7 +50,10 @@ Services running on the server:
 
 ### Containerized Web Service
 
-A web server is deployed using Docker.
+A web server is deployed using Docker. The application runs inside an **Nginx container**
+and exposes port **80** to the host system.
+
+![Docker Containers](docs/docker-containers.png)
 
 ```
 docker-compose up -d
@@ -61,13 +65,19 @@ Nginx runs inside a container and serves the application.
 
 ### System Monitoring
 
-Netdata provides real-time monitoring for:
+The server is monitored using **Netdata**, which provides real-time visibility
+into system performance and resource usage.
+Netdata helps detect performance issues and monitor the health of the server in real time.
 
-* CPU usage
-* RAM usage
-* Disk usage
-* Network traffic
-* Docker containers
+![Netdata Dashboard](docs/netdata-dashboard.png)
+
+Netdata collects metrics for:
+
+- CPU usage
+- RAM usage
+- Disk I/O
+- Network traffic
+- Docker containers
 
 Dashboard access:
 
@@ -80,6 +90,11 @@ http://SERVER-IP:19999
 ### Backup Automation
 
 Server configuration is automatically backed up using a Bash script.
+
+Daily backups are automated using cron to ensure regular snapshots
+of important server configuration files.
+
+![Cron Backup](docs/cron-backup.png)
 
 Backup script:
 
@@ -108,4 +123,6 @@ Daily backup scheduled with cron:
 
 ## Conclusion
 
-This project demonstrates how to build and manage a simplified **Linux production server environment**, showcasing essential skills required for a **Junior Linux System Administrator** role.
+This project demonstrates how to build and manage a simplified **Linux production server environment**.
+It highlights core responsibilities of a **Junior Linux System Administrator**, including
+container deployment, monitoring, automation, and basic server security.
