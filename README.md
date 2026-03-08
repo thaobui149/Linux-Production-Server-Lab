@@ -55,6 +55,8 @@ and exposes port **80** to the host system.
 
 ![Docker Containers](docs/docker-containers.png)
 
+Start the service using Docker Compose:
+
 ```
 docker-compose up -d
 ```
