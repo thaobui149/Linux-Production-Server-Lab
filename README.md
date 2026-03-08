@@ -2,32 +2,43 @@
 
 ## Overview
 
-This project simulates a **small production Linux server environment** built on **Ubuntu Server 22.04**.
-The goal of the lab is to demonstrate practical **Linux System Administration skills** such as container deployment, monitoring, server security, and automated backups.
+This project simulates a **small production-like Linux server environment** built on **Ubuntu Server 22.04**.
+
+The goal of this lab is to demonstrate practical **Linux System Administration skills**, including:
+
+* Container deployment with Docker
+* System monitoring
+* Server security configuration
+* Automated backups
+
+This repository represents a simplified production setup commonly used in real-world environments.
 
 ---
 
 ## Architecture
-The following diagram shows the structure of the lab environment and how the components interact.
+
+The following diagram illustrates how the components interact within the lab environment.
 
 ![Architecture Diagram](architecture/architecture-diagram.png)
 
-System flow:
+### System Flow
 
 User → Internet → Ubuntu Server
 
-Services running on the server:
+### Services Running on the Server
 
-* **Docker**
+**Docker**
 
-  * Nginx container (web service)
-* **Monitoring**
+* Nginx container (web service)
 
-  * Netdata dashboard
-* **Backup system**
+**Monitoring**
 
-  * Bash backup script
-  * Cron scheduled automation
+* Netdata dashboard
+
+**Backup System**
+
+* Bash backup script
+* Cron scheduled automation
 
 ---
 
@@ -50,64 +61,87 @@ Services running on the server:
 
 ### Containerized Web Service
 
-A web server is deployed using Docker. The application runs inside an **Nginx container**
-and exposes port **80** to the host system.
+A web server is deployed using Docker. The application runs inside an **Nginx container** and exposes **port 80** to the host system.
 
 ![Docker Containers](docs/docker-containers.png)
 
-Start the service using Docker Compose:
+To start the web service, run:
 
-```
+```bash
 docker-compose up -d
 ```
 
-Nginx runs inside a container and serves the application.
+Docker Compose launches the Nginx container which serves the web application.
 
 ---
 
 ### System Monitoring
 
-The server is monitored using **Netdata**, which provides real-time visibility
-into system performance and resource usage.
-Netdata helps detect performance issues and monitor the health of the server in real time.
+The server is monitored using **Netdata**, which provides real-time visibility into system performance and resource usage.
+
+Netdata helps detect performance issues and monitor server health in real time.
 
 ![Netdata Dashboard](docs/netdata-dashboard.png)
 
 Netdata collects metrics for:
 
-- CPU usage
-- RAM usage
-- Disk I/O
-- Network traffic
-- Docker containers
+* CPU usage
+* RAM usage
+* Disk I/O
+* Network traffic
+* Docker containers
 
-Dashboard access:
+Access the Netdata dashboard:
 
 ```
-http://SERVER-IP:19999
+http://<SERVER-IP>:19999
 ```
 
 ---
 
 ### Backup Automation
 
-Server configuration is automatically backed up using a Bash script.
+Server configuration files are automatically backed up using a **Bash backup script**.
 
-Daily backups are automated using cron to ensure regular snapshots
-of important server configuration files.
+Backups are scheduled daily using **cron** to ensure regular snapshots of important configuration files.
 
 ![Cron Backup](docs/cron-backup.png)
 
-Backup script:
+Backup script location:
 
 ```
 /opt/backups/backup.sh
 ```
 
-Daily backup scheduled with cron:
+Cron schedule:
 
-```
+```bash
 0 2 * * * /opt/backups/backup.sh
+```
+
+This runs the backup script **every day at 02:00 AM**.
+
+---
+
+## Setup
+
+Clone the repository:
+
+```bash
+git clone https://github.com/your-username/Linux-Production-Server-Lab.git
+cd Linux-Production-Server-Lab
+```
+
+Start the web service:
+
+```bash
+docker-compose up -d
+```
+
+Verify running containers:
+
+```bash
+docker ps
 ```
 
 ---
@@ -116,7 +150,7 @@ Daily backup scheduled with cron:
 
 * Linux server administration
 * Container deployment with Docker
-* System monitoring setup
+* System monitoring configuration
 * Backup automation with Bash and Cron
 * Server security configuration
 * Troubleshooting production issues
@@ -126,5 +160,10 @@ Daily backup scheduled with cron:
 ## Conclusion
 
 This project demonstrates how to build and manage a simplified **Linux production server environment**.
-It highlights core responsibilities of a **Junior Linux System Administrator**, including
-container deployment, monitoring, automation, and basic server security.
+
+It highlights core responsibilities of a **Linux System Administrator**, including:
+
+* Container deployment
+* System monitoring
+* Backup automation
+* Basic server security
